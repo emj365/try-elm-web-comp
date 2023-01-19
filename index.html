@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="node_modules/echarts/dist/echarts.js"></script>
+  </head>
+
+  <body>
+    <div id="elm-app-is-loaded-here"></div>
+    <script src="elm.js"></script>
+
+    <script>
+      var app = Elm.Main.init({
+        node: document.getElementById("elm-app-is-loaded-here"),
+      });
+
+      var chartDoms = document.getElementsByClassName("echart");
+      for (let index = 0; index < chartDoms.length; index++) {
+        const chartDom = chartDoms[index];
+        var opt = JSON.parse(chartDom.getAttribute("option"));
+        console.log(opt);
+        var myChart = echarts.init(chartDom);
+        opt && myChart.setOption(opt);
+      }
+    </script>
+  </body>
+</html>
